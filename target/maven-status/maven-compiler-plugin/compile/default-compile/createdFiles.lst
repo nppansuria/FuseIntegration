@@ -1,0 +1,3 @@
+com\java\camel\TestBean.class
+com\java\camel\MyProcessor.class
+com\java\camel\UncompressProcessor.class

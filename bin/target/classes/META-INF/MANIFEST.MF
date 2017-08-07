@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bnd-LastModified: 1501813969983
+Build-Jdk: 1.8.0_144
+Built-By: Nisarg
+Bundle-Description: Empty Camel Spring Example
+Bundle-License: http://www.apache.org/licenses/LICENSE-2.0.html
+Bundle-ManifestVersion: 2
+Bundle-Name: Empty Camel Spring Example [WebService]
+Bundle-SymbolicName: WebService
+Bundle-Version: 1.0.0.SNAPSHOT
+Created-By: Apache Maven Bundle Plugin
+Tool: Bnd-3.2.0.201605172007

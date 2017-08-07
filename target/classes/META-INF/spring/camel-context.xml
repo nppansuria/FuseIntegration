@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    JBoss, Home of Professional Open Source
+    Copyright 2014, Red Hat, Inc. and/or its affiliates, and individual
+    contributors by the @authors tag. See the copyright.txt in the
+    distribution for a full listing of individual contributors.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+    http://www.apache.org/licenses/LICENSE-2.0
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+-->
+<!-- Configures the Camel Context-->
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <bean class="com.java.camel.MyProcessor" id="myProcessor"/>
+    <bean class="com.java.camel.UncompressProcessor" id="UncompressProcessor"/>
+    <camelContext id="_camelContext1" xmlns="http://camel.apache.org/schema/spring">
+        <route id="Compress">
+            <!-- <from id="from http" uri="netty-http:http://localhost:8080/hello"/>  -->
+            <from id="_to1" uri="file:C:\Users\Nisarg\Documents\MuleFiles\OutBox\Compress"/>
+            <log id="log" message="+++ Compress Called. +++"/>
+            <process id="CompressProcessor" ref="myProcessor"/>
+            <log id="log" message="myName: ${in.header.myName}"/>
+            <to id="_to1" uri="file:C:\Users\Nisarg\Documents\MuleFiles\OutBox\CompressAfter"/>
+        </route>
+        
+        <route id="UnCompress">
+            <!-- <from id="from http" uri="netty-http:http://localhost:8080/hello"/>  -->
+            <from id="_to1un" uri="file:C:\Users\Nisarg\Documents\MuleFiles\OutBox\Uncompress"/>
+            <log id="logun" message="--- Uncompress Called. ---"/>
+            <process id="UncompressProcessor" ref="UncompressProcessor"/>
+            <log id="logun" message="myName: ${in.header.myName}"/>
+            <to id="_to1un" uri="file:C:\Users\Nisarg\Documents\MuleFiles\OutBox\UncompressAfter"/>
+        </route>
+    </camelContext>
+</beans>
